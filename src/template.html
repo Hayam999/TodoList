@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="content">
+        <div id="sidebar">
+            <div id="sidebar-projects">My Projects
+                <button id="add-project-btn">+</button>
+            </div>
+            <dialog id="add-project-dialog">
+                <form action="" id="add-project-form">
+                    <label for="name">Project Name</label>
+                    <input type="text" id="name" name="name">
+                    <button type="submit" id="submit-project">Submit</button>
+                    <button type="button" id="cancel-project">Cancel</button>
+                </form>
+            </dialog>
+        </div>
+        <dialog id="add-task-dialog">
+            <form action="" id="add-task-form">
+                <div class="task-label">
+                    <label for="title">Task Name</label>
+                    <input type="text" id="title" name="title">
+                </div>
+                <div class="task-label">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description">
+                    </textarea>
+                </div>
+                <div class="task-label">
+                    <label for="notes">Notes</label>
+                    <textarea name="notes" id="notes">
+                    </textarea>
+                </div>
+                <div class="task-input-btn">
+                    <label for="dueDate">Due date</label>
+                    <input type="date" id="dueDate" name="dueDate">
+                </div>
+                <div class="task-input-btn">
+                    <button type="button" id="priority-trigger">Priority</button>
+                    <fieldset id="priority-fieldset">
+                        <label for="urgent">Urgent</label>
+                        <input type="radio" id="urgent" 
+                        name="priority" value="urgent">
+                        <label for="high">High</label>
+                        <input type="radio" id="high"
+                        name="priority" value="high">
+                        <label for="medium">Medium</label>
+                        <input type="radio" id="medium"
+                        name="priority" value="medium">
+                        <label for="low">Low</label>
+                        <input type="radio" id="low"
+                        name="priority" value="low">
+                    </fieldset>
+                </div>
+                <button type="submit" id="submit-task">Submit</button>
+                <button type="button" id="cancel-form">Cancel</button>
+            </form>
+        </dialog>
+        <div id="main-area">
+            
+        </div>
+    </div>
+</body>
+</html>
