@@ -1,15 +1,19 @@
 import { project } from "./project.js";
 import { addToSideBar } from "./ui.js";
+import { projectStore } from "./store.js";
 
-const projArr = [];
-
-const inbox = project("inbox");
-projArr.push(inbox);
+let projArr = projectStore.load();
 
 function addProject(name) {
-    const newProj = project(name);
-    projArr.push(newProj);
-    addToSideBar(newProj);
+  const newProj = project(name, projArr.length + 1, []);
+  projArr.push(newProj);
+  addToSideBar(newProj);
+  projectStore.updateOne(newProj);
+}
+function removeProject(p) {
+  p.removeProject();
+  const index = projArr.indexOf(p);
+  projArr = projArr.splice(index, 1);
 }
 
-export { projArr, addProject };
+export { projArr, addProject, removeProject };

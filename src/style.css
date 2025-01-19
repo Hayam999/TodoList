@@ -68,3 +68,7 @@
   #priority-fieldset {
     display: none;
   }
+
+  #edit-priority {
+    display: none;
+  }

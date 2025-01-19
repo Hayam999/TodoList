@@ -1,9 +1,6 @@
 import { addProject } from "./data.js";
-import { addProjectsToSideBar, displayTask} from "./ui.js";
+import { addProjectsToSideBar, displayTask } from "./ui.js";
 import "./style.css";
-
-
-
 
 // functionality for adding projects
 const addProjBtn = document.getElementById("add-project-btn");
@@ -12,26 +9,21 @@ const addProjForm = document.getElementById("add-project-form");
 const cancelProjBtn = document.getElementById("cancel-project");
 
 addProjBtn.addEventListener("click", () => {
-    addProjDialog.showModal();
-})
+  addProjDialog.showModal();
+});
 
 addProjForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const formData = new FormData(addProjForm);
-    const newProj = addProject(formData.get("name"));
-    addProjForm.reset();
-    addProjDialog.close();
-})
+  e.preventDefault();
+  const formData = new FormData(addProjForm);
+  addProject(formData.get("name"));
+  addProjForm.reset();
+  addProjDialog.close();
+});
 
 cancelProjBtn.addEventListener("click", () => {
-    addProjForm.reset();
-    addProjDialog.close();
-})
-
-
-
-
-
+  addProjForm.reset();
+  addProjDialog.close();
+});
 
 // functionality for adding tasks
 const addTaskDialog = document.getElementById("add-task-dialog");
@@ -42,34 +34,34 @@ const prioFieldset = document.getElementById("priority-fieldset");
 let prioVisibility = false;
 
 export function submitTask(project) {
+  addTaskForm.onsubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData(addTaskForm);
+    const newTask = project.addTask(
+      formData.get("title"),
+      formData.get("description"),
+      formData.get("dueDate"),
+      formData.get("priority"),
+      formData.get("notes"),
+      formData.get("check"),
+    );
+    addTaskDialog.close();
+    addTaskForm.reset();
+    displayTask(newTask, project);
+  };
 
-    addTaskForm.onsubmit = (e) => { 
-        e.preventDefault();
-        const formData = new FormData(addTaskForm);
-        const newTask = project.addTask(formData.get("title"),
-                        formData.get("description"), 
-                        formData.get("dueDate"),
-                        formData.get("priority"),
-                        formData.get("notes"),
-                        formData.get("check"));
-        addTaskDialog.close();
-        addTaskForm.reset();
-        displayTask(newTask);
-    };
-    
-    cancelTaskBtn.onclick = () => { 
-        addTaskDialog.close();
-        addTaskForm.reset();
-    };
+  cancelTaskBtn.onclick = () => {
+    addTaskDialog.close();
+    addTaskForm.reset();
+  };
 
-    prioTrigger.onclick = () => {
-        prioVisibility = !prioVisibility;
-        if (prioVisibility) {
-            prioFieldset.style.display = prioVisibility ? 'block' : 'none';
-        }
+  prioTrigger.onclick = () => {
+    prioVisibility = !prioVisibility;
+    if (prioVisibility) {
+      prioFieldset.style.display = prioVisibility ? "block" : "none";
     }
+  };
 }
-
 
 // display initial projects when the dom is loading
 addProjectsToSideBar();
